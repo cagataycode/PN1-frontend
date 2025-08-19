@@ -4,7 +4,7 @@ import json
 from datetime import datetime
 from typing import Dict, Any, Optional
 import uuid
-from claude_recommender import replace_hardcoded_recommendations
+from .claude_recommender import replace_hardcoded_recommendations
 
 class DPQResponseFormatter:
     """

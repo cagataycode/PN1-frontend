@@ -10,8 +10,8 @@ dpq_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__
 sys.path.insert(0, dpq_path)
 
 # Import the modules directly using the correct class names
-import dpq as dpq_module
-import response_formatter as rf_module
+from dpq import dpq as dpq_module
+from dpq import response_formatter as rf_module
 
 def safe_format_number(value, decimals=2):
     """Safely format a number, handling both numeric and string types"""

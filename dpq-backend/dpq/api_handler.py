@@ -5,8 +5,8 @@ from typing import Dict, Any, Optional
 from datetime import datetime
 
 # Import your existing DPQ classes
-from dpq import DogPersonalityQuestionnaire, DPQAnalyzer
-from response_formatter import DPQResponseFormatter
+from .dpq import DogPersonalityQuestionnaire, DPQAnalyzer
+from .response_formatter import DPQResponseFormatter
 
 import asyncpg
 import os
@@ -28,7 +28,7 @@ class DPQAPIHandler:
         self.analyzer = DPQAnalyzer()
         self.formatter = DPQResponseFormatter()
     
-    def process_assessment(self, request_data: Dict[str, Any]) -> Dict[str, Any]:
+    async def process_assessment(self, request_data: Dict[str, Any]) -> Dict[str, Any]:
         """
         Main method to process a complete DPQ assessment request
         

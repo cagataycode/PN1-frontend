@@ -2,8 +2,9 @@ import anthropic
 import base64
 import json
 import os
-from sanic.log import logger
-from jobs.emotion_mapper import add_emotion_dimensions
+import logging
+logger = logging.getLogger(__name__)
+from .emotion_mapper import add_emotion_dimensions
 
 async def analyze_frames_with_claude(frames_dir: str, client: anthropic.Anthropic) -> dict:
     """Analyze extracted dog frames using Claude's vision capabilities with prompt caching"""
