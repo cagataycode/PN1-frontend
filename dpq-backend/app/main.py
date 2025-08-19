@@ -66,6 +66,13 @@ app = FastAPI(
     debug=active_settings.debug
 )
 
+# Import and include API routes
+from app.api.routes import assessments_router, videos_router
+
+# Include API routers
+app.include_router(assessments_router, prefix="/api")
+app.include_router(videos_router, prefix="/api")
+
 # Configure CORS for mobile app access
 app.add_middleware(
     CORSMiddleware,
