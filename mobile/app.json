@@ -1,0 +1,27 @@
+{
+  "expo": {
+    "name": "PN1-frontend",
+    "slug": "PN1-frontend",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "pn1frontend",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "edgeToEdgeEnabled": true
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static"
+    },
+    "plugins": [
+      "expo-router"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
