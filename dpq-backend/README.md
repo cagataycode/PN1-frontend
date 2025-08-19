@@ -121,8 +121,56 @@ Ensure all environment variables are properly configured in your deployment envi
 
 ## API Endpoints
 
-- `GET /` - Root endpoint
-- `GET /health` - Health check
-- `GET /api/health` - API health check
+### Core Endpoints
+
+- `GET /` - Root endpoint with service information
+- `GET /health` - Comprehensive health check
+- `GET /api/health` - API-specific health check
+- `GET /api/info` - API configuration information
+
+### Documentation
+
+- `GET /docs` - Interactive API documentation (Swagger UI)
+- `GET /redoc` - ReDoc API documentation
+
+### Health Check Response Example
+
+```json
+{
+  "status": "healthy",
+  "service": "DPQ Backend API",
+  "version": "1.0.0",
+  "environment": "development",
+  "timestamp": "2024-01-01T00:00:00.000000",
+  "checks": {
+    "api": "healthy",
+    "config": "loaded",
+    "logging": "configured"
+  }
+}
+```
+
+## Features
+
+### Environment Configuration
+
+- Automatic environment detection (development/production)
+- Environment-specific CORS settings
+- Configurable logging levels
+- File upload limits per environment
+
+### Error Handling
+
+- Global exception handlers
+- Structured error responses
+- Request validation error handling
+- Comprehensive logging
+
+### Logging
+
+- Environment-based log levels
+- File logging in production
+- Structured log formatting
+- Request/response logging
 
 More endpoints will be added as development progresses.
