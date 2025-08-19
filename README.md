@@ -1,50 +1,59 @@
-# Welcome to your Expo app 👋
+# PN1 Frontend
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A clean, minimal Expo React Native project built with TypeScript and Expo Router.
 
-## Get started
+## Features
 
-1. Install dependencies
+- **Expo Router**: File-based routing for React Native
+- **TypeScript**: Full TypeScript support
+- **Theme Support**: Light and dark mode support
+- **Clean Architecture**: Minimal boilerplate, ready for development
+
+## Getting Started
+
+1. Install dependencies:
 
    ```bash
    npm install
    ```
 
-2. Start the app
+2. Start the development server:
 
    ```bash
-   npx expo start
+   npm start
    ```
 
-In the output, you'll find options to open the app in a
+3. Run on your preferred platform:
+   - **iOS**: `npm run ios`
+   - **Android**: `npm run android`
+   - **Web**: `npm run web`
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Project Structure
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+```
+PN1-frontend/
+├── app/                 # App screens and routing
+│   ├── _layout.tsx     # Root layout
+│   ├── index.tsx       # Home screen
+│   └── +not-found.tsx  # 404 page
+├── components/          # Reusable components
+│   ├── ThemedText.tsx  # Themed text component
+│   └── ThemedView.tsx  # Themed view component
+├── constants/           # App constants
+│   └── Colors.ts       # Theme colors
+├── hooks/               # Custom hooks
+│   └── useColorScheme.ts # Color scheme hook
+└── package.json         # Dependencies and scripts
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Development
 
-## Learn more
+This project is set up with:
 
-To learn more about developing your project with Expo, look at the following resources:
+- ESLint for code quality
+- TypeScript for type safety
+- Expo for cross-platform development
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## License
 
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+This project is private and proprietary.
