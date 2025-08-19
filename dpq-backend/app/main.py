@@ -4,6 +4,7 @@ from fastapi.responses import JSONResponse
 import uvicorn
 import logging
 from contextlib import asynccontextmanager
+from app.config import active_settings, get_settings
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -28,7 +29,7 @@ app = FastAPI(
 # Configure CORS for mobile app access
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # In production, restrict this to your mobile app domain
+    allow_origins=active_settings.cors_origins_list,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -60,8 +61,8 @@ async def api_health_check():
 if __name__ == "__main__":
     uvicorn.run(
         "app.main:app",
-        host="0.0.0.0",
-        port=8000,
-        reload=True,
-        log_level="info"
+        host=active_settings.host,
+        port=active_settings.port,
+        reload=active_settings.debug,
+        log_level=active_settings.log_level.lower() if hasattr(active_settings, 'log_level') else "info"
     )

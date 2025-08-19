@@ -1,6 +1,7 @@
 import os
-from typing import Optional
+from typing import Optional, List
 from pydantic_settings import BaseSettings
+from pydantic import field_validator
 
 class Settings(BaseSettings):
     """Application settings"""
@@ -16,7 +17,14 @@ class Settings(BaseSettings):
     debug: bool = False
     
     # CORS Configuration
-    cors_origins: list = ["*"]  # In production, restrict this
+    cors_origins: str = "*"  # In production, restrict this
+    
+    @property
+    def cors_origins_list(self) -> List[str]:
+        """Get CORS origins as a list"""
+        if self.cors_origins == "*":
+            return ["*"]
+        return [origin.strip() for origin in self.cors_origins.split(",")]
     
     # Database Configuration (Supabase)
     supabase_url: Optional[str] = None
