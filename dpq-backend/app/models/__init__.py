@@ -10,6 +10,7 @@ This package contains data models and schemas for:
 from .assessment_models import *
 from .dog_models import *
 from .api_models import *
+from .video_models import *
 
 __all__ = [
     # Assessment models
@@ -23,5 +24,12 @@ __all__ = [
     
     # API models
     "APIResponse",
-    "ErrorResponse"
+    "ErrorResponse",
+    
+    # Video models
+    "VideoUploadRequest",
+    "VideoFileInfo",
+    "VideoProcessingStatus",
+    "VideoAnalysisResult",
+    "VideoMetadata"
 ]

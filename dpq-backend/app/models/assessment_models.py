@@ -11,6 +11,7 @@ from pydantic import BaseModel, Field, validator
 from typing import Dict, List, Optional, Any
 from datetime import datetime
 from enum import Enum
+from .validation import CustomValidators
 
 
 class AssessmentStatus(str, Enum):
@@ -33,9 +34,19 @@ class DogInfo(BaseModel):
     
     @validator('name')
     def validate_name(cls, v):
-        if not v.strip():
-            raise ValueError('Dog name cannot be empty')
-        return v.strip()
+        return CustomValidators.validate_dog_name(v)
+    
+    @validator('age')
+    def validate_age(cls, v):
+        return CustomValidators.validate_age_format(v)
+    
+    @validator('gender')
+    def validate_gender(cls, v):
+        return CustomValidators.validate_gender_value(v)
+    
+    @validator('weight')
+    def validate_weight(cls, v):
+        return CustomValidators.validate_weight_range(v)
 
 
 class AssessmentRequest(BaseModel):
@@ -52,13 +63,34 @@ class AssessmentRequest(BaseModel):
         
         # Check that all responses are valid (1-5 scale)
         valid_values = {1, 2, 3, 4, 5}
+        expected_questions = set(range(1, 51))  # DPQ typically has 50 questions
+        
+        # Validate response format and values
         for question_num, response in v.items():
             if not isinstance(question_num, (int, str)) or not isinstance(response, int):
                 raise ValueError('Invalid response format')
             if response not in valid_values:
                 raise ValueError(f'Response value {response} must be between 1 and 5')
         
-        return v
+        # Convert string question numbers to integers
+        processed_responses = {}
+        for question_num, response in v.items():
+            if isinstance(question_num, str):
+                try:
+                    question_num = int(question_num)
+                except ValueError:
+                    raise ValueError(f'Invalid question number format: {question_num}')
+            
+            if question_num not in expected_questions:
+                raise ValueError(f'Question number {question_num} is not valid (expected 1-50)')
+            
+            processed_responses[question_num] = response
+        
+        # Check if we have a reasonable number of responses
+        if len(processed_responses) < 30:
+            raise ValueError('Assessment must have at least 30 responses to be valid')
+        
+        return processed_responses
 
 
 class AssessmentData(BaseModel):
